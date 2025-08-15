@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Garda PEDUPAN</title>
+    <title>Download GARDA PEKIM</title>
     <style>
         * {
             margin: 0;
@@ -32,18 +32,23 @@
         }
 
         .app-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            border-radius: 20px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-        }
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-image: url('https://i.ibb.co.com/ZRbgdQ3M/logo-gardapekim.png>'); /* GANTI DENGAN URL LOGO ANDA */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 10px 30px rgba(46, 91, 186, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.app-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(46, 91, 186, 0.5);
+}
 
         h1 {
             color: #333;
@@ -278,19 +283,49 @@
             color: #666;
             margin-top: 5px;
         }
+
+        .download-info {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 1.5s infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="app-icon">GP</div>
-        <h1>Garda PEDUPAN</h1>
-        <div class="version">Versi 1.0.0 - Beta Testing</div>
+        <div class="app-icon"></div>
+        <h1>GARDA PEKIM</h1>
+        <div class="version">Versi 1.0.0</div>
         <div class="description">
-            Aplikasi untuk pelaporan dan pemantauan kegiatan peduli lingkungan di wilayah UMSU.
+            Aplikasi GARDA PEKIM adalah alat Anda untuk menjadi bagian dari solusi. Laporkan kegiatan peduli lingkungan Anda, pantau dampak kolektif kita, dan mari berkolaborasi untuk menciptakan ekosistem maritim yang lebih baik dan berkelanjutan. Unduh sekarang dan jadilah bagian dari perubahan.
+        </div>
+
+        <div class="download-info">
+            <span class="status-indicator"></span>
+            <strong>Server Aktif</strong> - Ready untuk download
         </div>
 
         <a href="#" class="download-btn" id="downloadBtn" onclick="downloadApp()">
-            📱 Download APK (8.5 MB)
+            📱 Download APK (15.3 MB)
         </a>
 
         <div class="qr-code" id="qrCode" style="display: none;">
@@ -325,22 +360,22 @@
         </div>
 
         <div class="warning">
-            <strong>⚠️ Penting:</strong> Ini adalah versi beta untuk testing. Jika mengalami masalah, silakan hubungi tim developer.
+            <strong>⚠️ Penting:</strong> Ini adalah versi awal dari aplikasi GARDA PEKIM. Jika Anda menemukan masalah atau memiliki masukan, kami akan sangat berterima kasih jika Anda dapat menyampaikannya kepada tim developer.
         </div>
 
         <div style="margin-top: 20px; color: #666; font-size: 14px;">
-            <p>📧 Support: support@gardapekim.com</p>
-            <p>📱 WhatsApp: +62-XXX-XXXX-XXXX</p>
+            <p>📧 Support: wanarya40@gmail.com</p>
+            <p>📱 WhatsApp: +62-853-7242-6008</p>
         </div>
     </div>
 
     <script>
-        // Multiple download sources for redundancy
+        // ✅ UPDATED: Link Google Drive Anda yang sudah disesuaikan
         const downloadSources = {
-            primary: 'https://drive.google.com/uc?export=download&id=YOUR_DRIVE_FILE_ID',
-            backup1: 'https://www.dropbox.com/s/YOUR_DROPBOX_LINK/garda-pedupan.apk?dl=1',
-            backup2: 'https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0/garda-pedupan.apk',
-            backup3: 'https://www.mediafire.com/file/YOUR_MEDIAFIRE_ID/garda-pedupan.apk/file'
+            primary: 'https://drive.google.com/uc?export=download&id=1tv4Uu_YQkhIBiK8qVsBCUSc-ovkn6O5F',
+            backup1: 'https://drive.google.com/file/d/1tv4Uu_YQkhIBiK8qVsBCUSc-ovkn6O5F/view?usp=sharing',
+            backup2: 'https://drive.google.com/uc?export=download&id=1tv4Uu_YQkhIBiK8qVsBCUSc-ovkn6O5F&confirm=1',
+            backup3: 'https://drive.google.com/open?id=1tv4Uu_YQkhIBiK8qVsBCUSc-ovkn6O5F'
         };
 
         let downloadAttempt = 0;
@@ -353,7 +388,7 @@
             // Show loading state
             const btn = document.getElementById('downloadBtn');
             const originalText = btn.textContent;
-            btn.textContent = '⏳ Preparing download...';
+            btn.textContent = '⏳ Memproses download...';
             btn.disabled = true;
             
             // Analytics tracking
@@ -367,6 +402,11 @@
             
             // Increment attempt counter
             downloadAttempt++;
+            
+            // Update download count
+            let downloadCount = parseInt(localStorage.getItem('downloadCount') || '0');
+            downloadCount++;
+            localStorage.setItem('downloadCount', downloadCount.toString());
             
             // Try download
             try {
@@ -406,9 +446,10 @@
             // Create modal dialog
             const modal = createModal(`
                 <div style="text-align: center;">
-                    <h3>📱 Download Started</h3>
-                    <p>File: <strong>garda-pedupan-v1.0.apk</strong></p>
-                    <p>Size: <strong>~8.5 MB</strong></p>
+                    <h3>📱 Download Dimulai</h3>
+                    <p>File: <strong>garda-pekim-v1.0.apk</strong></p>
+                    <p>Size: <strong>~15.3 MB</strong></p>
+                    <p>Server: <strong>Google Drive</strong></p>
                     <div style="margin: 20px 0;">
                         <div class="progress-bar">
                             <div class="progress-fill"></div>
@@ -416,7 +457,7 @@
                     </div>
                     <p style="color: #666; font-size: 14px;">
                         Jika download tidak dimulai otomatis, 
-                        <a href="${source}" target="_blank">klik di sini</a>
+                        <a href="${source}" target="_blank" style="color: #4CAF50;">klik di sini</a>
                     </p>
                     
                     <div style="margin-top: 20px;">
@@ -441,21 +482,19 @@
             const modal = createModal(`
                 <div style="text-align: center;">
                     <h3 style="color: #e74c3c;">❌ Download Gagal</h3>
-                    <p>Semua server download sedang bermasalah.</p>
+                    <p>Terjadi masalah dengan server download.</p>
                     <div style="margin: 20px 0;">
                         <p><strong>Alternatif Download:</strong></p>
                         <div style="margin: 10px 0;">
-                            <a href="${downloadSources.primary}" class="modal-btn">Google Drive</a>
-                            <a href="${downloadSources.backup1}" class="modal-btn">Dropbox</a>
+                            <a href="${downloadSources.primary}" class="modal-btn" target="_blank">Google Drive (Direct)</a>
                         </div>
                         <div style="margin: 10px 0;">
-                            <a href="${downloadSources.backup2}" class="modal-btn">GitHub</a>
-                            <a href="${downloadSources.backup3}" class="modal-btn">MediaFire</a>
+                            <a href="${downloadSources.backup1}" class="modal-btn" target="_blank">Google Drive (Preview)</a>
                         </div>
                     </div>
                     <p style="color: #666; font-size: 14px;">
                         📱 <strong>Hubungi Support:</strong><br>
-                        WhatsApp: <a href="tel:+6281234567890">+62-812-3456-7890</a>
+                        WhatsApp: <a href="https://wa.me/6285372426008" style="color: #4CAF50;">+62-853-7242-6008</a>
                     </p>
                     <button onclick="closeModal()" class="modal-btn primary">Tutup</button>
                 </div>
@@ -470,8 +509,8 @@
             const modal = document.createElement('div');
             modal.id = 'downloadModal';
             modal.innerHTML = `
-                <div class="modal-overlay">
-                    <div class="modal-content">
+                <div class="modal-overlay" onclick="closeModal()">
+                    <div class="modal-content" onclick="event.stopPropagation()">
                         ${content}
                     </div>
                 </div>
@@ -495,7 +534,7 @@
                             <span class="step-number">1</span>
                             <div>
                                 <strong>Download Selesai</strong>
-                                <p>Cari file "garda-pedupan-v1.0.apk" di folder Download</p>
+                                <p>Cari file "garda-pekim-v1.0.apk" di folder Download</p>
                             </div>
                         </div>
                         <div class="step">
@@ -503,6 +542,7 @@
                             <div>
                                 <strong>Izinkan Instalasi</strong>
                                 <p>Settings → Security → Enable "Install from Unknown Sources"</p>
+                                <small style="color: #666;">Atau Settings → Apps → Install unknown apps</small>
                             </div>
                         </div>
                         <div class="step">
@@ -516,22 +556,22 @@
                             <span class="step-number">4</span>
                             <div>
                                 <strong>Buka Aplikasi</strong>
-                                <p>Tap "Open" atau cari ikon "Garda PEDUPAN" di home screen</p>
+                                <p>Tap "Open" atau cari ikon "GARDA PEKIM" di home screen</p>
                             </div>
                         </div>
                     </div>
                     
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                        <h4>🎥 Video Tutorial</h4>
-                        <button onclick="window.open('https://youtu.be/YOUR_VIDEO_ID')" class="modal-btn">
-                            Tonton di YouTube
-                        </button>
+                        <h4>📱 Troubleshooting</h4>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Parse Error:</strong> File rusak, download ulang</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>App Not Installed:</strong> Enable Unknown Sources</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Storage Full:</strong> Hapus file lain dulu</p>
                     </div>
                     
                     <div class="support-info">
                         <strong>🆘 Butuh Bantuan?</strong><br>
-                        WhatsApp: <a href="https://wa.me/6281234567890">+62-812-3456-7890</a><br>
-                        Email: <a href="mailto:support@gardapekim.com">support@gardapekim.com</a>
+                        WhatsApp: <a href="https://wa.me/6285372426008" style="color: #4CAF50;">+62-853-7242-6008</a><br>
+                        Email: <a href="mailto:wanarya40@gmail.com" style="color: #4CAF50;">wanarya40@gmail.com</a>
                     </div>
                     
                     <button onclick="closeModal()" class="modal-btn primary">Mengerti</button>
@@ -543,22 +583,46 @@
         document.addEventListener('DOMContentLoaded', function() {
             const showQR = document.createElement('button');
             showQR.textContent = '📱 Tampilkan QR Code';
-            showQR.style.cssText = 'background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 25px; margin: 10px; cursor: pointer;';
+            showQR.style.cssText = 'background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 25px; margin: 10px; cursor: pointer; transition: all 0.2s;';
+            showQR.onmouseover = function() { this.style.background = '#0056b3'; };
+            showQR.onmouseout = function() { this.style.background = '#007bff'; };
             showQR.onclick = function() {
-                document.getElementById('qrCode').style.display = 
-                    document.getElementById('qrCode').style.display === 'none' ? 'block' : 'none';
+                const qrElement = document.getElementById('qrCode');
+                if (qrElement.style.display === 'none' || qrElement.style.display === '') {
+                    qrElement.style.display = 'block';
+                    this.textContent = '📱 Sembunyikan QR Code';
+                } else {
+                    qrElement.style.display = 'none';
+                    this.textContent = '📱 Tampilkan QR Code';
+                }
             };
             document.querySelector('.container').insertBefore(showQR, document.querySelector('.instructions'));
-        });
-
-        // Auto update download count (optional)
-        let downloadCount = localStorage.getItem('downloadCount') || '0';
-        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Update download count display
+            const downloadCount = localStorage.getItem('downloadCount') || '0';
             const counter = document.createElement('div');
+            counter.id = 'downloadCounter';
             counter.style.cssText = 'margin-top: 10px; color: #666; font-size: 12px;';
             counter.textContent = `📊 Total download: ${downloadCount}`;
             document.querySelector('.version').after(counter);
         });
+
+        // Update counter when download happens
+        function updateDownloadCounter() {
+            const counter = document.getElementById('downloadCounter');
+            const count = localStorage.getItem('downloadCount') || '0';
+            if (counter) {
+                counter.textContent = `📊 Total download: ${count}`;
+            }
+        }
+
+        // Test download function
+        function testDownload() {
+            console.log('Testing download links:');
+            Object.entries(downloadSources).forEach(([key, url]) => {
+                console.log(`${key}: ${url}`);
+            });
+        }
     </script>
 </body>
 </html>
