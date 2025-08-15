@@ -308,6 +308,47 @@
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
+
+        /* ===== QR CODE STYLING ===== */
+        .qr-container {
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .qr-image {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .qr-fallback {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 15px auto;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .qr-instructions {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -328,10 +369,39 @@
             📱 Download APK (15.3 MB)
         </a>
 
+        <!-- ===== QR CODE SECTION ===== -->
         <div class="qr-code" id="qrCode" style="display: none;">
-            <!-- QR Code akan muncul di sini -->
-            <div style="width: 150px; height: 150px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc;">
-                QR Code<br>Coming Soon
+            <div class="qr-container" id="qrContainer">
+                <h4 style="margin-bottom: 15px; color: #333;">📱 Scan untuk Download</h4>
+                
+                <!-- Option 1: Using local QR file (NAMA FILE: qr-gardapekim.png) -->
+                <img id="qrImageLocal" 
+                     src="./qr-gardapekim.png" 
+                     alt="QR Code Download GARDA PEKIM"
+                     class="qr-image"
+                     style="display: none;"
+                     onload="showLocalQR()"
+                     onerror="showGeneratedQR()">
+                
+                <!-- Option 2: Auto-generated QR from API -->
+                <img id="qrImageGenerated" 
+                     alt="QR Code Download GARDA PEKIM"
+                     class="qr-image"
+                     style="display: none;"
+                     onerror="showQRFallback()">
+                
+                <!-- Option 3: Fallback manual -->
+                <div id="qrFallback" class="qr-fallback" style="display: none;">
+                    <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
+                    <p>QR Code tidak tersedia<br>Gunakan tombol download di atas</p>
+                </div>
+                
+                <div class="qr-instructions">
+                    <p><strong>Cara menggunakan:</strong></p>
+                    <p>1. Buka kamera HP atau aplikasi QR scanner</p>
+                    <p>2. Arahkan ke QR code di atas</p>
+                    <p>3. Download akan otomatis dimulai</p>
+                </div>
             </div>
         </div>
 
@@ -380,6 +450,45 @@
 
         let downloadAttempt = 0;
         const maxAttempts = Object.keys(downloadSources).length;
+
+        // ===== QR CODE LOGIC =====
+        function showLocalQR() {
+            console.log('QR Code local berhasil dimuat');
+            document.getElementById('qrImageLocal').style.display = 'block';
+            document.getElementById('qrImageGenerated').style.display = 'none';
+            document.getElementById('qrFallback').style.display = 'none';
+        }
+
+        function showGeneratedQR() {
+            console.log('QR Code local gagal, menggunakan generated QR');
+            const downloadUrl = downloadSources.primary;
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(downloadUrl)}`;
+            
+            const qrGenerated = document.getElementById('qrImageGenerated');
+            qrGenerated.src = qrApiUrl;
+            qrGenerated.style.display = 'block';
+            
+            document.getElementById('qrImageLocal').style.display = 'none';
+            document.getElementById('qrFallback').style.display = 'none';
+        }
+
+        function showQRFallback() {
+            console.log('Semua QR Code gagal, menampilkan fallback');
+            document.getElementById('qrImageLocal').style.display = 'none';
+            document.getElementById('qrImageGenerated').style.display = 'none';
+            document.getElementById('qrFallback').style.display = 'flex';
+            
+            // Add manual link to fallback
+            const fallback = document.getElementById('qrFallback');
+            fallback.innerHTML += `
+                <p style="margin-top: 10px; font-size: 10px; color: #999;">
+                    <strong>Link Manual:</strong><br>
+                    <a href="${downloadSources.primary}" target="_blank" style="color: #4CAF50; word-break: break-all;">
+                        Klik untuk download
+                    </a>
+                </p>
+            `;
+        }
 
         function downloadApp() {
             const sources = Object.values(downloadSources);
@@ -626,7 +735,3 @@
     </script>
 </body>
 </html>
-
-
-
-
